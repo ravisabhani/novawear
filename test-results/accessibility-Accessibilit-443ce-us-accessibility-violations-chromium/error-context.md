@@ -1,0 +1,159 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - link "Skip to content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link "NW NovaWear" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e8]: NW
+        - text: NovaWear
+      - navigation [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e11] [cursor=pointer]:
+          - /url: /#catalog
+        - generic [ref=e13]:
+          - link "Sign up" [ref=e14] [cursor=pointer]:
+            - /url: /signup
+          - link "Login" [ref=e15] [cursor=pointer]:
+            - /url: /login
+          - link "Cart" [ref=e16] [cursor=pointer]:
+            - /url: /cart
+  - generic [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - paragraph [ref=e21]: NovaWear Studio · Future Essentials
+        - heading "Sculpted silhouettes engineered for motion & allure." [level=1] [ref=e22]
+        - paragraph [ref=e23]: Experience modular garments that adapt with you—featherweight knits, dissolving seams, and iridescent membranes handcrafted in our Amsterdam lab.
+        - generic [ref=e24]:
+          - link "Explore Capsule 02" [ref=e25] [cursor=pointer]:
+            - /url: /#catalog
+            - button "Explore Capsule 02" [ref=e26]
+          - link "View lookbook" [ref=e27] [cursor=pointer]:
+            - /url: "#lookbook"
+            - button "View lookbook" [ref=e28]
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - paragraph [ref=e31]: "128"
+            - paragraph [ref=e32]: custom textiles sampled
+          - generic [ref=e33]:
+            - paragraph [ref=e34]: 72h
+            - paragraph [ref=e35]: from concept to drop
+          - generic [ref=e36]:
+            - paragraph [ref=e37]: "05"
+            - paragraph [ref=e38]: biophilic palettes
+      - generic [ref=e40]:
+        - generic [ref=e43]:
+          - paragraph [ref=e44]: Drop 07
+          - paragraph [ref=e45]: 120 pcs
+        - generic [ref=e46]:
+          - paragraph [ref=e47]: Lab Crafted
+          - paragraph [ref=e48]: biodegradable dyes
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - paragraph [ref=e52]: Lab Notes
+          - heading "Material intelligence" [level=3] [ref=e53]
+        - paragraph [ref=e54]: Each capsule merges parametric tailoring with adaptive fibers to hold structure while remaining fluid.
+      - generic [ref=e55]:
+        - article [ref=e56]:
+          - paragraph [ref=e57]: Biomimicry
+          - paragraph [ref=e58]: Sea-silk infused threads that flex with body heat.
+        - article [ref=e59]:
+          - paragraph [ref=e60]: Zero-waste
+          - paragraph [ref=e61]: Laser-cut patterns minimise offcuts by 42%.
+        - article [ref=e62]:
+          - paragraph [ref=e63]: Aero knit
+          - paragraph [ref=e64]: 3D ribbing mapped from athlete motion capture.
+        - article [ref=e65]:
+          - paragraph [ref=e66]: Chromashift
+          - paragraph [ref=e67]: Photoluminescent coatings that react to night light.
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - paragraph [ref=e71]: Discover
+          - heading "Latest capsules" [level=2] [ref=e72]
+        - paragraph [ref=e73]: Refine the drop to match your rituals. Search across tactile categories, filter by silhouette, and sort the release order.
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - generic [ref=e76]: Search
+          - textbox "Search" [ref=e77]:
+            - /placeholder: e.g. Linen jacket
+        - generic [ref=e78]:
+          - generic [ref=e79]: Category
+          - combobox "Category" [ref=e80]:
+            - option "All" [selected]
+        - generic [ref=e81]:
+          - generic [ref=e82]: Sort by
+          - combobox "Sort by" [ref=e83]:
+            - option "Newest" [selected]
+            - 'option "Price: Low to High"'
+            - 'option "Price: High to Low"'
+            - 'option "Name: A → Z"'
+            - 'option "Name: Z → A"'
+        - generic [ref=e84]:
+          - button "Apply" [ref=e85] [cursor=pointer]
+          - button "Clear" [ref=e86] [cursor=pointer]
+      - paragraph [ref=e87]: Showing 0 pieces curated for you
+      - generic [ref=e89]: Request failed with status code 404
+    - generic [ref=e90]:
+      - generic [ref=e91]:
+        - generic [ref=e92]:
+          - paragraph [ref=e93]: Lookbook 02
+          - heading "Editorial moments" [level=2] [ref=e94]
+        - paragraph [ref=e95]: Shot on 35mm film in Lisbon’s old quarter. Each silhouette morphs through tracked sunlight to reveal luminous cores and diffused shadows.
+      - generic [ref=e96]:
+        - article [ref=e97]:
+          - img "MonoLayer" [ref=e98]
+          - generic [ref=e100]:
+            - paragraph [ref=e101]: Adaptive knit bodysuit
+            - paragraph [ref=e102]: MonoLayer
+        - article [ref=e103]:
+          - img "Glint Shell" [ref=e104]
+          - generic [ref=e106]:
+            - paragraph [ref=e107]: Reflective watercoat
+            - paragraph [ref=e108]: Glint Shell
+        - article [ref=e109]:
+          - img "Halo Knit" [ref=e110]
+          - generic [ref=e112]:
+            - paragraph [ref=e113]: Weightless merino mesh
+            - paragraph [ref=e114]: Halo Knit
+  - contentinfo [ref=e115]:
+    - generic [ref=e116]:
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - link "NW NovaWear" [ref=e119] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e120]: NW
+            - text: NovaWear
+          - paragraph [ref=e121]: Handmade modern essentials. Built for comfort and crafted for longevity.
+        - generic [ref=e122]:
+          - generic [ref=e123]:
+            - heading "Company" [level=4] [ref=e124]
+            - list [ref=e125]:
+              - listitem [ref=e126]:
+                - link "About" [ref=e127] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e128]:
+                - link "Contact" [ref=e129] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e130]:
+                - link "Careers" [ref=e131] [cursor=pointer]:
+                  - /url: /careers
+          - generic [ref=e132]:
+            - heading "Support" [level=4] [ref=e133]
+            - list [ref=e134]:
+              - listitem [ref=e135]:
+                - link "Help center" [ref=e136] [cursor=pointer]:
+                  - /url: /help
+              - listitem [ref=e137]:
+                - link "Shipping" [ref=e138] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=e139]:
+                - link "Returns" [ref=e140] [cursor=pointer]:
+                  - /url: /returns
+      - generic [ref=e141]: © 2025 NovaWear. All rights reserved.
+```

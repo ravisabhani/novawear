@@ -1,0 +1,22 @@
+{
+  "name": "novawear-mern",
+  "version": "1.0.0",
+  "description": "A full-stack e-commerce application built with MongoDB, Express, React, and Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "concurrently \"cd backend && cross-env NODE_ENV=development ADMIN_SECRET=e2e_secret npm run dev\" \"cd frontend && npm run dev\"",
+    "start:e2e": "concurrently \"node backend/scripts/startE2E.js\" \"cd frontend && npm run dev\"",
+    "e2e:install": "npx playwright install --with-deps",
+    "e2e:test": "npx playwright test --config=e2e/playwright.config.js --project=chromium"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.11",
+    "concurrently": "^8.2.0",
+    "@playwright/test": "^1.44.0",
+    "axe-core": "^4.9.3"
+  }
+}
