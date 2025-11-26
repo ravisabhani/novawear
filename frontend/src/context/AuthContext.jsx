@@ -1,4 +1,5 @@
 import { createContext, useEffect, useMemo, useState } from 'react';
+import { getProfile } from '../services/authService.js';
 
 export const AuthContext = createContext({
   user: null,
@@ -19,6 +20,8 @@ export const AuthProvider = ({ children }) => {
     return stored ? JSON.parse(stored) : null;
   });
   const [loading, setLoading] = useState(false);
+  // initializing: true while verifying any stored token on app startup
+  const [initializing, setInitializing] = useState(Boolean(token));
 
   useEffect(() => {
     if (token) {
@@ -27,6 +30,37 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem(TOKEN_KEY);
     }
   }, [token]);
+
+  // If the app starts with a token — verify it by calling /auth/me
+  useEffect(() => {
+    let mounted = true;
+
+    const verify = async () => {
+      if (!token) {
+        setInitializing(false);
+        return;
+      }
+
+      try {
+        const profile = await getProfile();
+        if (mounted) setUser(profile);
+      } catch (err) {
+        // token invalid/expired — clear it
+        if (mounted) {
+          setToken(null);
+          setUser(null);
+        }
+      } finally {
+        if (mounted) setInitializing(false);
+      }
+    };
+
+    verify();
+
+    return () => {
+      mounted = false;
+    };
+  }, []); // run once on mount (token read from initial state)
 
   useEffect(() => {
     if (user) {
@@ -55,6 +89,7 @@ export const AuthProvider = ({ children }) => {
     () => ({
       user,
       token,
+      initializing,
       loading,
       setLoading,
       isAuthenticated: Boolean(token),

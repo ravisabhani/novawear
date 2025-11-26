@@ -9,12 +9,12 @@ const Login = () => {
   const navigate = useNavigate();
   const { login, setLoading, isAuthenticated } = useAuth();
 
-  // Redirect if already logged in
+  // Redirect away once the app has finished verifying any stored token
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!initializing && isAuthenticated) {
       navigate('/', { replace: true });
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, initializing, navigate]);
   const [form, setForm] = useState({ email: '', password: '' });
   const [submitting, setSubmitting] = useState(false);
 
