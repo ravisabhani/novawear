@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { addItem } from '../services/cartService.js';
+import toast from 'react-hot-toast';
 
 const ProductCard = ({ product }) => {
   const { _id, name, price, category, image, brand } = product;
@@ -34,17 +36,35 @@ const ProductCard = ({ product }) => {
           </button>
         </div>
 
-        <div className="space-y-2 text-ink">
+          <div className="space-y-2 text-ink">
           <p className="text-xs uppercase tracking-[0.3em] text-muted">{brand || 'NovaWear'}</p>
           <h3 className="font-display text-2xl text-ink">{name}</h3>
           <div className="flex items-center justify-between text-sm text-muted">
             <p>
-              Drop price{' '}
+              Starting at{' '}
               <span className="text-xl font-semibold text-ink">
                 {typeof price === 'number' ? `$${price.toFixed(2)}` : '—'}
               </span>
             </p>
-            <span className="text-xs uppercase tracking-[0.4em] text-primary/70">details</span>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={async (e) => {
+                  e.preventDefault();
+                  try {
+                    await addItem({ productId: _id, quantity: 1 });
+                    toast.success('Added to cart');
+                  } catch (err) {
+                    toast.error('Unable to add to cart');
+                  }
+                }}
+                className="rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white shadow-sm hover:bg-primary-dark"
+              >
+                Add to cart
+              </button>
+
+              <span className="text-xs uppercase tracking-[0.4em] text-primary/70">details</span>
+            </div>
           </div>
         </div>
 

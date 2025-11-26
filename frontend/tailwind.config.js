@@ -4,20 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
+        // warmer palette tuned for Indian fashion sites (saffron + peacock + maroon accents)
         primary: {
-          DEFAULT: '#7c3aed',
-          dark: '#5b21b6',
-          light: '#9f7aea',
+          DEFAULT: '#FF7A18', // saffron
+          dark: '#D45D13',
+          light: '#FF9F5A',
         },
         secondary: {
-          DEFAULT: '#06b6d4',
-          light: '#67e8f9',
+          DEFAULT: '#0F766E', // deep teal/peacock
+          light: '#34D399',
         },
-        accent: '#fb7185',
+        accent: '#7f1d1d', // deep maroon
         ink: '#0b1220',
         sand: '#fff8f2',
         night: '#0f1724',
-        muted: '#64748b',
+        muted: '#6b7280',
       },
       boxShadow: {
         card: '0 20px 60px -20px rgba(15,23,42,0.3)',

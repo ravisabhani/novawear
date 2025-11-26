@@ -16,7 +16,7 @@ const Hero = () => {
           transition={{ delay: 0.1, duration: 0.6 }}
           className="inline-flex items-center gap-2 rounded-full bg-primary/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary"
         >
-          NovaWear Studio · Future Essentials
+          NovaWear Studio · Crafted with Heritage
         </motion.p>
 
         <motion.h1
@@ -25,7 +25,7 @@ const Hero = () => {
           transition={{ delay: 0.15, duration: 0.7 }}
           className="font-display text-4xl leading-tight text-ink sm:text-5xl lg:text-6xl"
         >
-          Sculpted silhouettes engineered for motion & allure.
+          Discover festival-ready silhouettes inspired by Indian craft and modern polish.
         </motion.h1>
 
         <motion.p
@@ -34,8 +34,8 @@ const Hero = () => {
           transition={{ delay: 0.2, duration: 0.7 }}
           className="max-w-xl text-lg text-ink/70"
         >
-          Experience modular garments that adapt with you—featherweight knits, dissolving seams, and iridescent
-          membranes handcrafted in our Amsterdam lab.
+          Celebrate color and tradition—handwoven textures, bright palettes and modern tailoring for every festive
+          occasion.
         </motion.p>
 
         <motion.div
@@ -45,8 +45,8 @@ const Hero = () => {
           className="flex flex-wrap gap-4"
         >
           <Link to="#catalog">
-            <button className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition hover:-translate-y-0.5 hover:bg-primary-dark">
-              Explore Capsule 02
+              <button className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition hover:-translate-y-0.5 hover:bg-primary-dark">
+              Explore New Festive Drops
             </button>
           </Link>
           <a href="#lookbook">
