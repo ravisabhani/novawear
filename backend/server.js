@@ -6,6 +6,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import xssClean from 'xss-clean';
 import hpp from 'hpp';
 import cookieParser from 'cookie-parser';
+import rateLimit from 'express-rate-limit';
 import connectDB from './config/db.js';
 import errorHandler from './middleware/errorHandler.js';
 
@@ -49,6 +50,18 @@ app.use(mongoSanitize()); // Prevent NoSQL injection by sanitizing req.body, req
 app.use(xssClean()); // Sanitize user input from HTML input
 app.use(hpp()); // Prevent HTTP parameter pollution
 app.use(cookieParser()); // Parse cookies
+
+// Global rate limiter to limit repeated requests to public APIs and endpoints
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many requests, please try again later.' },
+});
+
+// Apply rate limiter to all requests
+app.use(globalLimiter);
 
 // Health check route
 app.get('/api/health', (req, res) => {
