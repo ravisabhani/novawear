@@ -64,15 +64,15 @@ const Hero = () => {
         >
           <div>
             <p className="text-2xl font-semibold text-primary">128</p>
-            <p className="text-ink/70">custom textiles sampled</p>
+            <p className="text-ink/80">custom textiles sampled</p>
           </div>
           <div>
             <p className="text-2xl font-semibold text-primary">72h</p>
-            <p className="text-ink/70">from concept to drop</p>
+            <p className="text-ink/80">from concept to drop</p>
           </div>
           <div>
             <p className="text-2xl font-semibold text-primary">05</p>
-            <p className="text-ink/70">biophilic palettes</p>
+            <p className="text-ink/80">biophilic palettes</p>
           </div>
         </motion.div>
       </div>

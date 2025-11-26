@@ -41,15 +41,42 @@ test.describe('E2E flow: signup -> login -> add to cart -> checkout', () => {
     await page.fill('#name', 'E2E User');
     await page.fill('#email', userEmail);
     await page.fill('#password', 'password123');
+    // collect page console messages and network responses so we can debug failures
+    page.on('console', (msg) => console.log('[PAGE CONSOLE]', msg.type(), msg.text()));
+    const apiResponses = [];
+    page.on('response', async (res) => {
+      try {
+        const url = res.url();
+        if (url.includes('/api/')) {
+          const body = await res.text().catch(() => '<unserializable>');
+          console.log('[API RESP]', res.status(), res.request().method(), url, body.slice(0, 300));
+          apiResponses.push({ url, status: res.status(), method: res.request().method(), body: body.slice(0, 1000) });
+        }
+      } catch (e) {
+        console.log('Error capturing response body', e);
+      }
+    });
+
     await page.click('button:has-text("Create account")');
+    // wait for nav to show authenticated state (Logout button or user name)
+    await page.waitForSelector('text=Logout', { timeout: 10000 });
 
     // Visit the product page and add to cart
     await page.goto(`/products/${prod._id}`);
-    await page.click('button:has-text("Add to cart")');
+    // click Add to cart and await a successful /cart/item response or toast
+    await Promise.all([
+      page.waitForResponse((r) => r.url().includes('/api/cart/item') && r.status() === 200, { timeout: 10000 }),
+      page.click('button:has-text("Add to cart")'),
+    ]).catch(async (err) => {
+      console.log('Add to cart network error or timeout — recorded API responses:', apiResponses.slice(-6));
+      throw err;
+    });
 
     // Go to cart and checkout
     await page.goto('/cart');
     await page.waitForSelector('text=Your cart');
+    // Ensure at least one cart item is present before trying to click Checkout
+    await page.waitForSelector('text=Remove', { timeout: 10000 });
 
     // Debug: capture cart HTML and ensure the Checkout button is visible/clickable
     console.log('--- CART PAGE HTML START ---');
@@ -70,8 +97,10 @@ test.describe('E2E flow: signup -> login -> add to cart -> checkout', () => {
     await checkoutLocator.waitFor({ state: 'attached', timeout: 15000 });
     await checkoutLocator.click({ timeout: 15000 });
 
-    // Confirm order success UI appears
-    await expect(page.locator('text=Order placed')).toBeVisible();
-    await expect(page.locator(/total: \$/i)).toBeVisible();
+    // Confirm order success UI appears (target heading to avoid strict mode error)
+    await expect(page.getByRole('heading', { name: 'Order placed' })).toBeVisible();
+    // The toast uses role=status too, so target the confirmation banner by locating the heading
+    const orderBanner = page.getByRole('heading', { name: 'Order placed' }).locator('..');
+    await expect(orderBanner.getByText(/total: \$/i)).toBeVisible();
   });
 });

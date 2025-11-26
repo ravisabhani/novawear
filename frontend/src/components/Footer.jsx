@@ -10,13 +10,13 @@ const Footer = () => (
             <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-bold text-primary">NW</span>
             NovaWear
           </Link>
-          <p className="mt-3 max-w-md text-sm text-ink/70">Handmade modern essentials. Built for comfort and crafted for longevity.</p>
+          <p className="mt-3 max-w-md text-sm text-ink/80">Handmade modern essentials. Built for comfort and crafted for longevity.</p>
         </div>
 
         <div className="flex gap-8">
           <div>
             <h4 className="text-sm font-semibold text-ink/80">Company</h4>
-            <ul className="mt-3 space-y-2 text-sm text-ink/70">
+            <ul className="mt-3 space-y-2 text-sm text-ink/80">
               <li><Link to="/about" className="hover:text-primary">About</Link></li>
               <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
               <li><Link to="/careers" className="hover:text-primary">Careers</Link></li>
@@ -25,7 +25,7 @@ const Footer = () => (
 
           <div>
             <h4 className="text-sm font-semibold text-ink/80">Support</h4>
-            <ul className="mt-3 space-y-2 text-sm text-ink/70">
+            <ul className="mt-3 space-y-2 text-sm text-ink/80">
               <li><Link to="/help" className="hover:text-primary">Help center</Link></li>
               <li><Link to="/shipping" className="hover:text-primary">Shipping</Link></li>
               <li><Link to="/returns" className="hover:text-primary">Returns</Link></li>
@@ -34,7 +34,7 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="mt-8 border-t border-slate-100 pt-6 text-sm text-ink/60">© {new Date().getFullYear()} NovaWear. All rights reserved.</div>
+      <div className="mt-8 border-t border-slate-100 pt-6 text-sm text-ink/80">© {new Date().getFullYear()} NovaWear. All rights reserved.</div>
     </div>
   </footer>
 );

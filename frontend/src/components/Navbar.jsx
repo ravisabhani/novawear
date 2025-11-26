@@ -43,8 +43,8 @@ const Navbar = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-30 bg-white/80 shadow backdrop-blur supports-[backdrop-filter]:bg-white/70">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-        <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-ink">
-          <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-bold text-primary">NW</span>
+          <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-ink">
+          <span className="rounded-full bg-primary-dark px-3 py-1 text-sm font-bold text-white">NW</span>
           NovaWear
         </Link>
 

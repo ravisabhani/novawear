@@ -84,7 +84,7 @@ const ProductPage = () => {
         </div>
 
         <div className="space-y-6">
-          <span className="rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+          <span className="rounded-full bg-primary-dark px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white">
             {product.category}
           </span>
           <h1 className="text-4xl font-bold text-ink">{product.name}</h1>

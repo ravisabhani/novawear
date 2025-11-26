@@ -65,12 +65,12 @@ const Cart = () => {
           {order && (
             <div className="rounded-2xl border border-primary/10 bg-primary/5 p-6 mb-6" role="status" aria-live="polite">
               <h3 className="text-lg font-semibold text-ink">Order placed</h3>
-              <p className="text-sm text-ink/70 mt-2">Order #{order._id} — total: ${order.total?.toFixed(2)}</p>
+              <p className="text-sm text-ink/80 mt-2">Order #{order._id} — total: ${order.total?.toFixed(2)}</p>
             </div>
           )}
       <h2 className="text-2xl font-semibold text-ink mb-4">Your cart</h2>
 
-      {cart?.items?.length === 0 && <p className="text-ink/70">Your cart is empty.</p>}
+      {cart?.items?.length === 0 && <p className="text-ink/80">Your cart is empty.</p>}
 
       {cart?.items?.length > 0 && (
         <div className="space-y-4">
@@ -84,7 +84,7 @@ const Cart = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="font-semibold text-ink">{it.product.name}</div>
-                    <div className="text-sm text-ink/70">{it.product.category}</div>
+                    <div className="text-sm text-ink/80">{it.product.category}</div>
                   </div>
                   <div className="font-semibold text-ink">${(it.priceAtAdd * it.quantity).toFixed(2)}</div>
                 </div>
@@ -98,7 +98,7 @@ const Cart = () => {
           ))}
 
           <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-            <div className="text-ink/70">Total</div>
+            <div className="text-ink/80">Total</div>
             <div className="font-semibold text-ink">${(cart.items.reduce((s, i) => s + i.priceAtAdd * i.quantity, 0)).toFixed(2)}</div>
           </div>
 

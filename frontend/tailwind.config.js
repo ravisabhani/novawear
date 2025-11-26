@@ -6,8 +6,9 @@ export default {
       colors: {
         // warmer palette tuned for Indian fashion sites (saffron + peacock + maroon accents)
         primary: {
-          DEFAULT: '#FF7A18', // saffron
-          dark: '#D45D13',
+          // darken primary slightly to meet WCAG contrast requirements for text on primary
+          DEFAULT: '#A03B00', // darker saffron — increases contrast against white
+          dark: '#7A3000',
           light: '#FF9F5A',
         },
         secondary: {

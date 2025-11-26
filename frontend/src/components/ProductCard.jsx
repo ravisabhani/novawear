@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
               className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 via-primary/5 to-primary/10 text-6xl font-black text-primary/70">
+            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/30 via-primary/20 to-primary/30 text-6xl font-black text-primary">
               {name?.charAt(0) || 'N'}
             </div>
           )}
@@ -58,17 +58,17 @@ const ProductCard = ({ product }) => {
                     toast.error('Unable to add to cart');
                   }
                 }}
-                className="rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white shadow-sm hover:bg-primary-dark"
+                className="rounded-full bg-primary-dark px-3 py-1 text-xs font-semibold text-white shadow-sm hover:bg-primary"
               >
                 Add to cart
               </button>
 
-              <span className="text-xs uppercase tracking-[0.4em] text-primary/70">details</span>
+              <span className="text-xs uppercase tracking-[0.4em] text-primary">details</span>
             </div>
           </div>
         </div>
 
-        <span className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent opacity-0 blur-3xl transition duration-500 group-hover:opacity-100" />
+        <span className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-primary/40 via-primary/20 to-transparent opacity-0 blur-3xl transition duration-500 group-hover:opacity-100" />
       </motion.article>
     </Link>
   );
