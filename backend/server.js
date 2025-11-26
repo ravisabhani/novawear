@@ -1,6 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
+import xssClean from 'xss-clean';
+import hpp from 'hpp';
+import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
 import errorHandler from './middleware/errorHandler.js';
 
@@ -38,6 +43,12 @@ app.use(
 );
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+// Security middlewares
+app.use(helmet()); // Sets various HTTP headers for basic protections
+app.use(mongoSanitize()); // Prevent NoSQL injection by sanitizing req.body, req.query, req.params
+app.use(xssClean()); // Sanitize user input from HTML input
+app.use(hpp()); // Prevent HTTP parameter pollution
+app.use(cookieParser()); // Parse cookies
 
 // Health check route
 app.get('/api/health', (req, res) => {
