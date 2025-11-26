@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../components/ui/Button.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -7,7 +7,7 @@ import { login as loginRequest } from '../services/authService.js';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login, setLoading, isAuthenticated } = useAuth();
+  const { login, setLoading, isAuthenticated, initializing } = useAuth();
 
   // Redirect away once the app has finished verifying any stored token
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../components/ui/Button.jsx';
 import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -7,14 +7,14 @@ import { register as registerRequest } from '../services/authService.js';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { login, setLoading, isAuthenticated } = useAuth();
+  const { login, setLoading, isAuthenticated, initializing } = useAuth();
 
-  // Redirect away from signup if user is already authenticated
+  // Redirect away from signup once token verification completes
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!initializing && isAuthenticated) {
       navigate('/', { replace: true });
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, initializing, navigate]);
 
   const [form, setForm] = useState({ name: '', email: '', password: '', adminSecret: '' });
   const [isAdmin, setIsAdmin] = useState(false);
