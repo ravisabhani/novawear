@@ -1,0 +1,61 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - link "Skip to content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link "NW NovaWear" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e8]: NW
+        - text: NovaWear
+      - navigation [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "Shop" [ref=e11] [cursor=pointer]:
+          - /url: /#catalog
+        - generic [ref=e13]:
+          - link "Sign up" [ref=e14] [cursor=pointer]:
+            - /url: /signup
+          - link "Login" [ref=e15] [cursor=pointer]:
+            - /url: /login
+          - link "Cart" [ref=e16] [cursor=pointer]:
+            - /url: /cart
+  - generic [ref=e18]: Please log in to view your cart
+  - contentinfo [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - link "NW NovaWear" [ref=e23] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e24]: NW
+            - text: NovaWear
+          - paragraph [ref=e25]: Handmade modern essentials. Built for comfort and crafted for longevity.
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - heading "Company" [level=4] [ref=e28]
+            - list [ref=e29]:
+              - listitem [ref=e30]:
+                - link "About" [ref=e31] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e32]:
+                - link "Contact" [ref=e33] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e34]:
+                - link "Careers" [ref=e35] [cursor=pointer]:
+                  - /url: /careers
+          - generic [ref=e36]:
+            - heading "Support" [level=4] [ref=e37]
+            - list [ref=e38]:
+              - listitem [ref=e39]:
+                - link "Help center" [ref=e40] [cursor=pointer]:
+                  - /url: /help
+              - listitem [ref=e41]:
+                - link "Shipping" [ref=e42] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=e43]:
+                - link "Returns" [ref=e44] [cursor=pointer]:
+                  - /url: /returns
+      - generic [ref=e45]: © 2025 NovaWear. All rights reserved.
+```

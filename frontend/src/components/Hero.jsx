@@ -32,7 +32,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.7 }}
-          className="max-w-xl text-lg text-ink/70"
+          className="max-w-xl text-lg text-ink/80"
         >
           Celebrate color and tradition—handwoven textures, bright palettes and modern tailoring for every festive
           occasion.
@@ -60,7 +60,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
-          className="flex flex-wrap gap-6 text-sm text-ink/70"
+          className="flex flex-wrap gap-6 text-sm text-ink/80"
         >
           <div>
             <p className="text-2xl font-semibold text-primary">128</p>
@@ -95,7 +95,7 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className={`absolute ${badge.position} rounded-2xl border border-slate-200 bg-white px-4 py-3 text-ink shadow-sm`}
             >
-              <p className="text-xs uppercase tracking-[0.3em] text-ink/60">{badge.label}</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-ink/80">{badge.label}</p>
               <p className="text-sm font-semibold">{badge.detail}</p>
             </motion.div>
           ))}

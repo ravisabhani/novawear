@@ -12,6 +12,20 @@ import cartRoutes from './routes/cartRoutes.js';
 // Load environment variables
 dotenv.config();
 
+// Ensure JWT_SECRET is configured in a developer-friendly way.
+// - In production we require a secret to be explicitly set (fail early)
+// - In development we provide a non-production default so running locally doesn't crash unexpectedly
+if (!process.env.JWT_SECRET) {
+  if (process.env.NODE_ENV === 'production') {
+    console.error('FATAL: JWT_SECRET environment variable must be set in production. Aborting startup.');
+    process.exit(1);
+  }
+
+  // development or unspecified: auto-set a clear default and log a helpful message
+  process.env.JWT_SECRET = process.env.JWT_SECRET || 'novawear_dev_jwt_secret';
+  console.warn('Warning: JWT_SECRET not set — using a development default. Set JWT_SECRET in .env for realistic auth behavior.');
+}
+
 // Initialize Express app
 const app = express();
 

@@ -23,10 +23,10 @@ const HighlightsCarousel = () => (
   <section className="rounded-[32px] border border-slate-100 bg-white px-6 py-8 text-ink lg:px-10">
     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <div>
-        <p className="text-xs uppercase tracking-[0.4em] text-ink/60">Lab Notes</p>
+        <p className="text-xs uppercase tracking-[0.4em] text-ink/80">Lab Notes</p>
         <h3 className="font-display text-2xl">Material intelligence</h3>
       </div>
-      <p className="max-w-md text-sm text-ink/70">
+      <p className="max-w-md text-sm text-ink/80">
         Each capsule merges parametric tailoring with adaptive fibers to hold structure while remaining fluid.
       </p>
     </div>
@@ -40,8 +40,8 @@ const HighlightsCarousel = () => (
           viewport={{ once: true }}
           className="rounded-2xl border border-slate-100 bg-slate-50 p-5"
         >
-          <p className="text-xs uppercase tracking-[0.4em] text-ink/60">{item.label}</p>
-          <p className="mt-3 text-sm text-ink/70">{item.detail}</p>
+          <p className="text-xs uppercase tracking-[0.4em] text-ink/80">{item.label}</p>
+          <p className="mt-3 text-sm text-ink/80">{item.detail}</p>
         </motion.article>
       ))}
     </div>

@@ -41,6 +41,11 @@ CLIENT_URL=http://localhost:5173
 ```
 
 If no email configuration is present the server will *log* email content during development and tests.
+
+⚠️ Important: Authentication configuration
+
+- For secure token generation the server requires `JWT_SECRET`. In production environments this environment variable **must** be set — the server will exit if it is missing.
+- For local development the server will fall back to a development-only default JWT secret (so the app doesn't crash), but you should still add a `.env` and set `JWT_SECRET` to match your environment if you want behavior that resembles production.
 ```
 
 ### 3. Start MongoDB

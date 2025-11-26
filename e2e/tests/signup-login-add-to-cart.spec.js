@@ -50,7 +50,25 @@ test.describe('E2E flow: signup -> login -> add to cart -> checkout', () => {
     // Go to cart and checkout
     await page.goto('/cart');
     await page.waitForSelector('text=Your cart');
-    await page.click('button:has-text("Checkout")');
+
+    // Debug: capture cart HTML and ensure the Checkout button is visible/clickable
+    console.log('--- CART PAGE HTML START ---');
+    try {
+      const html = await page.content();
+      // Print a short snippet to avoid huge logs
+      console.log(html.slice(0, 600));
+    } catch (e) {
+      console.log('Could not capture page HTML', e);
+    }
+    console.log('--- CART PAGE HTML END ---');
+
+    const checkoutLocator = page.locator('button:has-text("Checkout")');
+    // Wait up to 15s for the button to become visible
+    await checkoutLocator.waitFor({ state: 'visible', timeout: 15000 });
+    console.log('Checkout buttons found:', await checkoutLocator.count());
+    // Extra safety: ensure button is enabled before clicking
+    await checkoutLocator.waitFor({ state: 'attached', timeout: 15000 });
+    await checkoutLocator.click({ timeout: 15000 });
 
     // Confirm order success UI appears
     await expect(page.locator('text=Order placed')).toBeVisible();

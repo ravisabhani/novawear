@@ -25,13 +25,13 @@
   - generic [ref=e18]:
     - generic [ref=e19]:
       - generic [ref=e20]:
-        - paragraph [ref=e21]: NovaWear Studio · Future Essentials
-        - heading "Sculpted silhouettes engineered for motion & allure." [level=1] [ref=e22]
-        - paragraph [ref=e23]: Experience modular garments that adapt with you—featherweight knits, dissolving seams, and iridescent membranes handcrafted in our Amsterdam lab.
+        - paragraph [ref=e21]: NovaWear Studio · Crafted with Heritage
+        - heading "Discover festival-ready silhouettes inspired by Indian craft and modern polish." [level=1] [ref=e22]
+        - paragraph [ref=e23]: Celebrate color and tradition—handwoven textures, bright palettes and modern tailoring for every festive occasion.
         - generic [ref=e24]:
-          - link "Explore Capsule 02" [ref=e25] [cursor=pointer]:
+          - link "Explore New Festive Drops" [ref=e25] [cursor=pointer]:
             - /url: /#catalog
-            - button "Explore Capsule 02" [ref=e26]
+            - button "Explore New Festive Drops" [ref=e26]
           - link "View lookbook" [ref=e27] [cursor=pointer]:
             - /url: "#lookbook"
             - button "View lookbook" [ref=e28]
@@ -86,6 +86,8 @@
           - generic [ref=e79]: Category
           - combobox "Category" [ref=e80]:
             - option "All" [selected]
+            - option "accessibility"
+            - option "e2e"
         - generic [ref=e81]:
           - generic [ref=e82]: Sort by
           - combobox "Sort by" [ref=e83]:
@@ -97,63 +99,93 @@
         - generic [ref=e84]:
           - button "Apply" [ref=e85] [cursor=pointer]
           - button "Clear" [ref=e86] [cursor=pointer]
-      - paragraph [ref=e87]: Showing 0 pieces curated for you
-      - generic [ref=e89]: Request failed with status code 404
-    - generic [ref=e90]:
-      - generic [ref=e91]:
-        - generic [ref=e92]:
-          - paragraph [ref=e93]: Lookbook 02
-          - heading "Editorial moments" [level=2] [ref=e94]
-        - paragraph [ref=e95]: Shot on 35mm film in Lisbon’s old quarter. Each silhouette morphs through tracked sunlight to reveal luminous cores and diffused shadows.
-      - generic [ref=e96]:
-        - article [ref=e97]:
-          - img "MonoLayer" [ref=e98]
-          - generic [ref=e100]:
-            - paragraph [ref=e101]: Adaptive knit bodysuit
-            - paragraph [ref=e102]: MonoLayer
-        - article [ref=e103]:
-          - img "Glint Shell" [ref=e104]
-          - generic [ref=e106]:
-            - paragraph [ref=e107]: Reflective watercoat
-            - paragraph [ref=e108]: Glint Shell
-        - article [ref=e109]:
-          - img "Halo Knit" [ref=e110]
-          - generic [ref=e112]:
-            - paragraph [ref=e113]: Weightless merino mesh
-            - paragraph [ref=e114]: Halo Knit
-  - contentinfo [ref=e115]:
-    - generic [ref=e116]:
-      - generic [ref=e117]:
-        - generic [ref=e118]:
-          - link "NW NovaWear" [ref=e119] [cursor=pointer]:
+      - paragraph [ref=e87]: Showing 2 pieces curated for you
+      - generic [ref=e88]:
+        - link [ref=e89] [cursor=pointer]:
+          - /url: /products/6926dea4bf09a8110f14d183
+          - article [ref=e90]:
+            - generic [ref=e91]:
+              - generic [ref=e92]: E
+              - generic [ref=e94]: e2e
+              - button "Pin" [ref=e95]
+            - generic [ref=e96]:
+              - paragraph [ref=e97]: NovaWear
+              - heading "E2E Product" [level=3] [ref=e98]
+              - generic [ref=e99]:
+                - paragraph [ref=e100]: Starting at $9.99
+                - generic [ref=e101]:
+                  - button "Add to cart" [ref=e102]
+                  - generic [ref=e103]: details
+        - link [ref=e104] [cursor=pointer]:
+          - /url: /products/6926dea4bf09a8110f14d180
+          - article [ref=e105]:
+            - generic [ref=e106]:
+              - generic [ref=e107]: A
+              - generic [ref=e109]: accessibility
+              - button "Pin" [ref=e110]
+            - generic [ref=e111]:
+              - paragraph [ref=e112]: NovaWear
+              - heading "Axe Product" [level=3] [ref=e113]
+              - generic [ref=e114]:
+                - paragraph [ref=e115]: Starting at $1.00
+                - generic [ref=e116]:
+                  - button "Add to cart" [ref=e117]
+                  - generic [ref=e118]: details
+    - generic [ref=e119]:
+      - generic [ref=e120]:
+        - generic [ref=e121]:
+          - paragraph [ref=e122]: Lookbook 02
+          - heading "Editorial moments" [level=2] [ref=e123]
+        - paragraph [ref=e124]: Shot on 35mm film in Lisbon’s old quarter. Each silhouette morphs through tracked sunlight to reveal luminous cores and diffused shadows.
+      - generic [ref=e125]:
+        - article [ref=e126]:
+          - img "MonoLayer" [ref=e127]
+          - generic [ref=e129]:
+            - paragraph [ref=e130]: Adaptive knit bodysuit
+            - paragraph [ref=e131]: MonoLayer
+        - article [ref=e132]:
+          - img "Glint Shell" [ref=e133]
+          - generic [ref=e135]:
+            - paragraph [ref=e136]: Reflective watercoat
+            - paragraph [ref=e137]: Glint Shell
+        - article [ref=e138]:
+          - img "Halo Knit" [ref=e139]
+          - generic [ref=e141]:
+            - paragraph [ref=e142]: Weightless merino mesh
+            - paragraph [ref=e143]: Halo Knit
+  - contentinfo [ref=e144]:
+    - generic [ref=e145]:
+      - generic [ref=e146]:
+        - generic [ref=e147]:
+          - link "NW NovaWear" [ref=e148] [cursor=pointer]:
             - /url: /
-            - generic [ref=e120]: NW
+            - generic [ref=e149]: NW
             - text: NovaWear
-          - paragraph [ref=e121]: Handmade modern essentials. Built for comfort and crafted for longevity.
-        - generic [ref=e122]:
-          - generic [ref=e123]:
-            - heading "Company" [level=4] [ref=e124]
-            - list [ref=e125]:
-              - listitem [ref=e126]:
-                - link "About" [ref=e127] [cursor=pointer]:
+          - paragraph [ref=e150]: Handmade modern essentials. Built for comfort and crafted for longevity.
+        - generic [ref=e151]:
+          - generic [ref=e152]:
+            - heading "Company" [level=4] [ref=e153]
+            - list [ref=e154]:
+              - listitem [ref=e155]:
+                - link "About" [ref=e156] [cursor=pointer]:
                   - /url: /about
-              - listitem [ref=e128]:
-                - link "Contact" [ref=e129] [cursor=pointer]:
+              - listitem [ref=e157]:
+                - link "Contact" [ref=e158] [cursor=pointer]:
                   - /url: /contact
-              - listitem [ref=e130]:
-                - link "Careers" [ref=e131] [cursor=pointer]:
+              - listitem [ref=e159]:
+                - link "Careers" [ref=e160] [cursor=pointer]:
                   - /url: /careers
-          - generic [ref=e132]:
-            - heading "Support" [level=4] [ref=e133]
-            - list [ref=e134]:
-              - listitem [ref=e135]:
-                - link "Help center" [ref=e136] [cursor=pointer]:
+          - generic [ref=e161]:
+            - heading "Support" [level=4] [ref=e162]
+            - list [ref=e163]:
+              - listitem [ref=e164]:
+                - link "Help center" [ref=e165] [cursor=pointer]:
                   - /url: /help
-              - listitem [ref=e137]:
-                - link "Shipping" [ref=e138] [cursor=pointer]:
+              - listitem [ref=e166]:
+                - link "Shipping" [ref=e167] [cursor=pointer]:
                   - /url: /shipping
-              - listitem [ref=e139]:
-                - link "Returns" [ref=e140] [cursor=pointer]:
+              - listitem [ref=e168]:
+                - link "Returns" [ref=e169] [cursor=pointer]:
                   - /url: /returns
-      - generic [ref=e141]: © 2025 NovaWear. All rights reserved.
+      - generic [ref=e170]: © 2025 NovaWear. All rights reserved.
 ```

@@ -98,10 +98,10 @@ const Home = () => {
       <section id="catalog" className="space-y-8 rounded-[32px] border border-slate-100 bg-white p-6 lg:p-10">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-ink/60">Discover</p>
+            <p className="text-xs uppercase tracking-[0.4em] text-ink/80">Discover</p>
             <h2 className="font-display text-3xl">Latest capsules</h2>
           </div>
-          <p className="max-w-lg text-sm text-ink/70">
+          <p className="max-w-lg text-sm text-ink/80">
             Refine the drop to match your rituals. Search across tactile categories, filter by silhouette, and sort the
             release order.
           </p>
@@ -112,7 +112,7 @@ const Home = () => {
           className="grid gap-4 rounded-3xl border border-slate-100 bg-white p-6 shadow ring-1 ring-slate-100 md:grid-cols-5"
         >
           <div className="flex flex-col gap-2">
-            <label htmlFor="search" className="text-sm font-semibold text-ink/70">
+            <label htmlFor="search" className="text-sm font-semibold text-ink/80">
               Search
             </label>
             <input
@@ -126,7 +126,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="category" className="text-sm font-semibold text-ink/70">
+            <label htmlFor="category" className="text-sm font-semibold text-ink/80">
               Category
             </label>
             <select
@@ -146,7 +146,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="sort" className="text-sm font-semibold text-ink/70">
+            <label htmlFor="sort" className="text-sm font-semibold text-ink/80">
               Sort by
             </label>
             <select
@@ -191,7 +191,7 @@ const Home = () => {
           </div>
         )}
 
-        <p className="text-sm text-ink/70">
+        <p className="text-sm text-ink/80">
           Showing <span className="font-semibold text-ink">{products.length}</span> pieces curated for you
         </p>
 
@@ -214,7 +214,7 @@ const Home = () => {
           )}
 
           {!loading && !error && products.length === 0 && (
-            <div className="col-span-full rounded-2xl border border-slate-100 bg-white p-10 text-center text-ink/70">
+            <div className="col-span-full rounded-2xl border border-slate-100 bg-white p-10 text-center text-ink/80">
               No products found. Try adjusting your filters.
             </div>
           )}
