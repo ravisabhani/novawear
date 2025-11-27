@@ -42,6 +42,53 @@ CLIENT_URL=http://localhost:5173
 
 If no email configuration is present the server will *log* email content during development and tests.
 
+### Important for Production deployments (Render, Vercel, Netlify)
+
+The backend enforces CORS by default and needs to be configured with the frontend origin(s) so browser requests are accepted.
+
+- `CLIENT_URL` (optional) — a single URL used in a few places (email reset links and helpful local defaults). Example: `https://my-site.vercel.app`.
+- `ALLOWED_ORIGINS` (optional) — a comma-separated list of allowed origins for CORS. Example: `https://my-site.vercel.app,https://another-frontend.com,http://localhost:5173`.
+
+When deploying the backend to Render make sure you add either `CLIENT_URL` or `ALLOWED_ORIGINS` (or both) to the service's environment variables so the CORS configuration will allow the deployed frontend to talk to the API. If the frontend still shows errors after deploying:
+
+1. Check Render's service logs for requests and CORS errors.
+2. Verify your Vercel app's `VITE_API_URL` points to the correct Render URL (including `/api`) — this must be set in Vercel before the frontend is deployed.
+3. Use the health endpoint to confirm your backend is reachable:
+
+```bash
+curl -i https://<your-backend>.onrender.com/api/health
+```
+
+You should see a 200 response indicating the API is running.
+
+### Debugging origins and CORS
+
+If the API still seems to block your frontend, the backend now provides a small debug endpoint you can call to confirm which origins were read at startup and what origin your request is using:
+
+```
+GET /api/debug/origins
+```
+
+Example (PowerShell):
+
+```
+curl.exe -s -H "Origin: https://novawear-quurlbib4-ravi-sabhanis-projects.vercel.app" https://novawear-giim.onrender.com/api/debug/origins | jq
+
+```
+
+Expected output should show the `allowedOrigins` array and the `incomingOrigin` you supplied. If the `allowedOrigins` list doesn't include your Vercel origin (and you added it in Render), check that you have no extra quotes or leading/trailing spaces in the Render environment variable and that you restarted/redeployed the service after changing env vars.
+
+If everything looks right here and the frontend still fails with a CORS error, double-check that your browser request uses the exact origin (protocol + host) listed in `allowedOrigins` — it must match exactly (including https://). Also confirm the Vercel bundle was rebuilt after setting `VITE_API_URL`.
+
+### Allowing localhost & wildcard testing shortcuts
+
+We added a convenience to make local development easier:
+
+- Any incoming origin that matches `http://localhost:<port>` or `https://localhost:<port>` will be allowed automatically. This helps when your dev server uses different ports (5173, 3000, etc.).
+- You can also set `ALLOW_ALL_ORIGINS=true` in your backend env (Render) to temporarily allow all origins while debugging. This is insecure for production and should only be used for short testing windows.
+
+After changing any of these environment variables redeploy/restart the Render service.
+
 ⚠️ Important: Authentication configuration
 
 - For secure token generation the server requires `JWT_SECRET`. In production environments this environment variable **must** be set — the server will exit if it is missing.

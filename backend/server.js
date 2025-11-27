@@ -36,12 +36,58 @@ if (!process.env.JWT_SECRET) {
 const app = express();
 
 // Middleware
+// Configure allowed origins from environment for production deployments
+// - In development this defaults to the Vite dev server at http://localhost:5173
+const allowedOrigins = [];
+if (process.env.CLIENT_URL) {
+  // Allow a single CLIENT_URL set on Render/production
+  allowedOrigins.push(process.env.CLIENT_URL);
+}
+// Support a comma-separated ALLOWED_ORIGINS env var for flexibility
+if (process.env.ALLOWED_ORIGINS) {
+  process.env.ALLOWED_ORIGINS.split(',').forEach((o) => {
+    const trimmed = o.trim();
+    if (trimmed) allowedOrigins.push(trimmed);
+  });
+}
+// Always allow the dev client locally when running on developer machines
+if (!allowedOrigins.includes('http://localhost:5173')) allowedOrigins.push('http://localhost:5173');
+
+// Helpful startup log so the Render service logs show what origins were configured
+console.log('Allowed CORS origins:', allowedOrigins.join(', '));
+
+// Use a dynamic origin handler so the CORS response echoes back the incoming
+// origin when it's allowed (good for single-page apps hosted on different hosts)
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: (incomingOrigin, callback) => {
+      // If no origin provided (server-to-server or curl) allow it
+      if (!incomingOrigin) return callback(null, true);
+
+      // Full wildcard override (use cautiously in production)
+      if (process.env.ALLOW_ALL_ORIGINS === 'true') return callback(null, true);
+
+      // Allow any localhost origin on any port (useful when running local dev from any port)
+      try {
+        const isLocalhost = /^https?:\/\/localhost(:\d+)?$/i.test(incomingOrigin);
+        if (isLocalhost) return callback(null, true);
+      } catch (e) {
+        // fallthrough to exact match
+      }
+
+      // Exact match against configured allowedOrigins
+      if (allowedOrigins.includes(incomingOrigin)) return callback(null, true);
+
+      return callback(new Error('CORS origin not allowed'));
+    },
     credentials: true,
   })
 );
+
+// Lightweight debug endpoint to inspect the currently configured origins at runtime
+app.get('/api/debug/origins', (req, res) => {
+  res.json({ success: true, allowedOrigins, incomingOrigin: req.headers.origin || null });
+});
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 // Security middlewares
