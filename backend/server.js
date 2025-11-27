@@ -79,11 +79,30 @@ app.use(
       // Exact match against configured allowedOrigins
       if (allowedOrigins.includes(incomingOrigin)) return callback(null, true);
 
-      return callback(new Error('CORS origin not allowed'));
+      // Do not throw here — instead deny CORS silently and allow later middleware
+      // to return a friendly 403 with a JSON body (prevents long stack traces in logs).
+      console.warn('Blocked CORS origin:', incomingOrigin);
+      return callback(null, false);
     },
     credentials: true,
   })
 );
+
+// If origin is present but not allowed, respond with a clean 403 JSON so we don't
+// produce stack traces in logs and provide a clear message to callers.
+app.use((req, res, next) => {
+  const incomingOrigin = req.headers.origin;
+
+  if (!incomingOrigin) return next();
+
+  // Respect the same checks as the CORS handler
+  if (process.env.ALLOW_ALL_ORIGINS === 'true') return next();
+  if (/^https?:\/\/localhost(:\d+)?$/i.test(incomingOrigin)) return next();
+  if (allowedOrigins.includes(incomingOrigin)) return next();
+
+  // Not allowed -> return JSON 403 (CORS middleware did not add CORS headers)
+  return res.status(403).json({ success: false, message: 'CORS origin not allowed', origin: incomingOrigin });
+});
 
 // Lightweight debug endpoint to inspect the currently configured origins at runtime
 app.get('/api/debug/origins', (req, res) => {
