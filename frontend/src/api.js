@@ -1,22 +1,35 @@
 import axios from 'axios';
 
-// Vite injects VITE_API_URL at build time. If it wasn't set when the app
-// was built (e.g. deployed without the env), fall back to a runtime-safe
-// value so the live site still contacts the Render backend.
+// Resolve API base at runtime so deployed bundles can be corrected without
+// requiring a rebuild when VITE_API_URL was set incorrectly at build-time.
 // Priority order (most to least):
-// 1. import.meta.env.VITE_API_URL (build-time env)
-// 2. window.__NOVAWEAR_API_URL (optional runtime override if you inject it)
-// 3. hard-coded production API URL (final fallback)
-// Allow an explicit runtime override to take precedence even when the app
-// was built with a VITE_API_URL value (e.g. a local dev value baked into
-// the build). That way we can fix a live deployment quickly by setting
-// window.__NOVAWEAR_API_URL in the page (Vercel or a small script) without
-// rebuilding.
-const RUNTIME_OVERRIDE = typeof window !== 'undefined' && window.__NOVAWEAR_API_URL;
-const HARDCODED_FALLBACK = 'https://novawear-giim.onrender.com/api';
+// 1. runtime override: window.__NOVAWEAR_API_URL (settable on the page)
+// 2. build-time Vite env: import.meta.env.VITE_API_URL
+// 3. hard-coded safe fallback: Render API
+const RENDER_FALLBACK = 'https://novawear-giim.onrender.com/api';
 
-// Priority: runtime override -> build-time VITE_API_URL -> hard-coded fallback
-const baseURL = RUNTIME_OVERRIDE || import.meta.env.VITE_API_URL || HARDCODED_FALLBACK;
+function resolveApiBase() {
+  try {
+    // runtime override (highest priority) - respected even if VITE_API_URL was set
+    if (typeof window !== 'undefined' && window.__NOVAWEAR_API_URL) {
+      return window.__NOVAWEAR_API_URL;
+    }
+
+    // If Vite injected a VITE_API_URL at build-time, it's used next. However
+    // avoid using obviously-local values in production (e.g. localhost) — treat
+    // them as absent so the fallback wins.
+    const buildUrl = import.meta.env.VITE_API_URL;
+    if (buildUrl && !/localhost|127\.0\.0\.1/.test(buildUrl)) {
+      return buildUrl;
+    }
+  } catch (e) {
+    // noop - fall through to final fallback
+  }
+
+  return RENDER_FALLBACK;
+}
+
+const baseURL = resolveApiBase();
 
 const api = axios.create({
   baseURL,
@@ -41,4 +54,12 @@ api.interceptors.request.use(
 );
 
 export default api;
+
+// Helpful debug log so we can see which base was chosen inside a customer's
+// browser console (safely runs only in browsers).
+if (typeof window !== 'undefined' && window.console && window.console.info) {
+  try {
+    console.info('[NovaWear] API base URL:', baseURL);
+  } catch {}
+}
 
