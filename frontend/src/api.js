@@ -19,7 +19,15 @@ function resolveApiBase() {
     // avoid using obviously-local values in production (e.g. localhost) — treat
     // them as absent so the fallback wins.
     const buildUrl = import.meta.env.VITE_API_URL;
-    if (buildUrl && !/localhost|127\.0\.0\.1/.test(buildUrl)) {
+    // Treat build-time values that are obviously local or relative as absent so
+    // the runtime override or the safe Render fallback will be used. This
+    // prevents bundles built with an incorrect VITE_API_URL (e.g. empty
+    // string or "/") from issuing relative requests in production.
+    if (
+      buildUrl &&
+      !/localhost|127\.0\.0\.1/.test(buildUrl) &&
+      !/^\s*\/.*/.test(buildUrl)
+    ) {
       return buildUrl;
     }
   } catch (e) {
