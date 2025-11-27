@@ -14,6 +14,7 @@ import errorHandler from './middleware/errorHandler.js';
 import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
+import debugRoutes from './routes/debugRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -127,6 +128,8 @@ app.get('/api/test', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+// Debug routes (protected by ALLOW_DB_WRITE + SEED_SECRET)
+app.use('/api/debug', debugRoutes);
 
 // 404 handler for undefined routes
 app.use('/api/*', (req, res) => {

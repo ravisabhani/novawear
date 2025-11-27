@@ -275,6 +275,27 @@ The script creates multiple curated products intended to reflect Indian fashion 
 
 The script prints the created document id and exits.
 
+### Runtime seeding endpoints (protected)
+
+If you cannot run the seed scripts directly on the server, there are two protected runtime endpoints that let an operator seed the database from the running service. These are gated behind two environment variables:
+
+- `ALLOW_DB_WRITE=true` — must be set to enable write operations
+- `SEED_SECRET=<your-secret>` — required secret used to authenticate the seeding request
+
+Endpoints:
+
+- POST /api/debug/seed-products — inserts a small selection of sample products
+- POST /api/debug/seed-sample — inserts a single sample product for quick DB checks
+
+Call example (PowerShell):
+
+```powershell
+# set these env vars in Render then call the endpoint
+curl.exe -i -X POST https://novawear-giim.onrender.com/api/debug/seed-sample -H "X-SEED-SECRET: my-super-secret"
+```
+
+Only enable `ALLOW_DB_WRITE` temporarily while testing and ensure `SEED_SECRET` is a strong value. These endpoints are intended for operators and should be disabled when not in use.
+
 
 CI: The repository contains a GitHub Actions workflow at `.github/workflows/ci-backend.yml` which runs the test suite on pushes and pull requests that affect the `backend/` directory.
 ```
