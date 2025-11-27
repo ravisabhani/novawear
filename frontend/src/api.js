@@ -7,11 +7,16 @@ import axios from 'axios';
 // 1. import.meta.env.VITE_API_URL (build-time env)
 // 2. window.__NOVAWEAR_API_URL (optional runtime override if you inject it)
 // 3. hard-coded production API URL (final fallback)
-const RUNTIME_FALLBACK = typeof window !== 'undefined' && window.__NOVAWEAR_API_URL
-  ? window.__NOVAWEAR_API_URL
-  : 'https://novawear-giim.onrender.com/api';
+// Allow an explicit runtime override to take precedence even when the app
+// was built with a VITE_API_URL value (e.g. a local dev value baked into
+// the build). That way we can fix a live deployment quickly by setting
+// window.__NOVAWEAR_API_URL in the page (Vercel or a small script) without
+// rebuilding.
+const RUNTIME_OVERRIDE = typeof window !== 'undefined' && window.__NOVAWEAR_API_URL;
+const HARDCODED_FALLBACK = 'https://novawear-giim.onrender.com/api';
 
-const baseURL = import.meta.env.VITE_API_URL || RUNTIME_FALLBACK;
+// Priority: runtime override -> build-time VITE_API_URL -> hard-coded fallback
+const baseURL = RUNTIME_OVERRIDE || import.meta.env.VITE_API_URL || HARDCODED_FALLBACK;
 
 const api = axios.create({
   baseURL,
