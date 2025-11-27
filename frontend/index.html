@@ -8,6 +8,29 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Runtime API override: If the app was built without a correct VITE_API_URL,
+         this inline script sets a safe default for the preview/production site
+         (only when not running on 'localhost'). You can change or inject this
+         value in hosting platforms by setting window.__NOVAWEAR_API_URL. -->
+    <script>
+      (function() {
+        try {
+          if (typeof window === 'undefined') return;
+          // Don't override local dev
+          const host = window.location && window.location.hostname || '';
+          const isLocal = /localhost|127\.0\.0\.1/.test(host);
+          if (isLocal) return;
+
+          // If a runtime override is already set by the platform, keep it.
+          if (!window.__NOVAWEAR_API_URL) {
+            // Production Render API (safe fallback)
+            window.__NOVAWEAR_API_URL = 'https://novawear-giim.onrender.com/api';
+          }
+        } catch (e) {
+          // ignore
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
