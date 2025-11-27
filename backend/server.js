@@ -105,9 +105,22 @@ app.use((req, res, next) => {
 
   if (!incomingOrigin) return next();
 
-  // Respect the same checks as the CORS handler
+  // Respect the same checks as the CORS handler to avoid a double-deny
   if (process.env.ALLOW_ALL_ORIGINS === 'true') return next();
+
+  // Allow any localhost origin on any port
   if (/^https?:\/\/localhost(:\d+)?$/i.test(incomingOrigin)) return next();
+
+  // Support Vercel-origin traffic (deployment SSO and preview domains)
+  try {
+    const isVercelAuth = /^https?:\/\/vercel\.com$/i.test(incomingOrigin);
+    const isVercelPreview = /^https?:\/\/.*\.vercel\.app$/i.test(incomingOrigin);
+    if (isVercelAuth || isVercelPreview) return next();
+  } catch (e) {
+    // fallthrough to exact match
+  }
+
+  // Exact match against configured allowedOrigins
   if (allowedOrigins.includes(incomingOrigin)) return next();
 
   // Not allowed -> return JSON 403 (CORS middleware did not add CORS headers)
