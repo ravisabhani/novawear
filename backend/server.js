@@ -76,6 +76,16 @@ app.use(
         // fallthrough to exact match
       }
 
+      // Support Vercel-origin traffic (deployment SSO and preview domains)
+      // - allow vercel.com (used by Vercel auth) and any subdomain of vercel.app
+      try {
+        const isVercelAuth = /^https?:\/\/vercel\.com$/i.test(incomingOrigin);
+        const isVercelPreview = /^https?:\/\/.*\.vercel\.app$/i.test(incomingOrigin);
+        if (isVercelAuth || isVercelPreview) return callback(null, true);
+      } catch (e) {
+        // fallthrough to exact match
+      }
+
       // Exact match against configured allowedOrigins
       if (allowedOrigins.includes(incomingOrigin)) return callback(null, true);
 
